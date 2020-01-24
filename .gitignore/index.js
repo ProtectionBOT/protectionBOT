@@ -484,7 +484,7 @@ bot.on("message" , message =>{
 bot.on("message" , message =>{
   if (!message.guild) return
   if (message.content === prefix + "dev"){
-      message.channel.send (" J'ai été créé et développé par Serenity_Thomas#4399   ")
+      message.channel.send (" J'ai été créé et développé par Serenity_Thomas#4399 avec l'aide de Люка#1916")
   }
 });
 
