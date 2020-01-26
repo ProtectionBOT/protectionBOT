@@ -6,7 +6,7 @@ let status = [bot.users.size+ " utilisateurs", "la protection", "son développeu
 let nowstat = status[Math.floor(Math.random() * status.length)]
 let prefix = "?"
 
-bot.login("NjY5MjI2NTM5ODM3MjkyNTc0.Xi1rtQ.fWwkRsRpWv9roDxP6nnaFM_uMj4");
+bot.login("process.env.TOKEN)
 
 bot.on('ready', () => {
     console.log("le bot Protection est bien connecté aux  serveurs")
