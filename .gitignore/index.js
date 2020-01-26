@@ -6,7 +6,7 @@ let status = [bot.users.size+ " utilisateurs", "la protection", "son développeu
 let nowstat = status[Math.floor(Math.random() * status.length)]
 let prefix = "?"
 
-bot.login(process.env.TOKEN);
+bot.login("NjY5MjI2NTM5ODM3MjkyNTc0.Xi1rtQ.fWwkRsRpWv9roDxP6nnaFM_uMj4");
 
 bot.on('ready', () => {
     console.log("le bot Protection est bien connecté aux  serveurs")
@@ -17,7 +17,7 @@ bot.on('ready', () => {
         let nowstat = status[Math.floor(Math.random() * status.length)]
 
         bot.user.setActivity(nowstat, {type: "WATCHING"})
-        console.log("Statut du botchangé.")
+        console.log("Statut du bot changé.")
     }
 });
 
@@ -127,10 +127,6 @@ client.on('message', function (message) {
         }
     }
 });
-
-const warns = JSON.parse(fs.readFileSync('./warns.json'))
- 
-client.login('votre token')
  
 client.on("message", function (message) {
     if (!message.guild) return
@@ -234,9 +230,7 @@ bot.on('message', message => {
     });
 
 var fs = require('fs');
- 
-let warns = JSON.parse(fs.readFileSync("./warns.json", "utf8"));
- 
+  
 bot.on ('message', message => { 
   if (!message.guild) return
   if(message.content.startsWith("?warn")) { 
@@ -291,13 +285,8 @@ if(message.mentions.users.size === 0) {
  
             }
  
-            fs.writeFile("./warns.json", JSON.stringify(warns), (err) => {if (err) console.error(err);});
- 
-message.delete();
- 
             message.channel.send(':warning: | **'+mentionned.tag+' à été averti** :white_check_mark:');
  
-message.mentions.users.first().send(`:warning: **Warn |** depuis **${message.guild.name}** donné par **${message.author.username}**\n\n**Raison:** ` + args.slice(1).join(' '))
  
           } else {
  
@@ -473,7 +462,6 @@ if(!message.guild.member(message.author).hasPermission("MANAGE_GUILD")) return m
      
                 delete warns[message.guild.id][mentioned.id];
      
-                fs.writeFile("./warns.json", JSON.stringify(warns), (err) => {if (err) console.error(err);});
      
                 message.channel.send(`Les warns de **${mentioned.tag}** a été enlevé avec succès!:white_check_mark:`);
      
@@ -502,7 +490,7 @@ if(!message.guild.member(message.author).hasPermission("MANAGE_GUILD")) return m
           message.channel.send("**:x: Vous n'avez pas la permission `Gérer le serveur` dans ce serveur:x:**");
      
         }
-      }})};
+      }});
 
       bot.on ('message', message => { 
         if (!message.guild) return
@@ -526,7 +514,7 @@ if(!message.guild.member(message.author).hasPermission("MANAGE_GUILD")) return m
                 console.log("Un modérateur a supprimé des messages !")
             });
           });
-}})})});
+}});
 
 bot.on("message" , message =>{
   if (!message.guild) return
@@ -562,7 +550,7 @@ bot.on ('message', message => {
    if (message.guild.member(message.author).hasPermission("ADMINISTRATOR")) {
     if (message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) {
        var text = message.content.split(' ').slice(1).join(' ')
-       if (!text) return message.reply('hey , tu as oublié ce que tu voulais marquer ^^')
+       if (!text) return message.reply('Tu as oublié ce que tu voulais marquer? :wink:')
        message.delete('')
        message.channel.send(text)
   } else {
@@ -639,45 +627,6 @@ bot.on('message', message =>{
       }}});
       }
   });
-
-
-client.on ("guildMemberAdd", user =>{
-  user.guild.channels.get ("659722917453758494").send("Bienvenue "+ user + " sur le serveur " + user.guild.name + " !")
-});
-client.on("guildMemberRemove", user =>{
-  user.guild.channels.get ("659722917453758494").send ("L'utilisateur " + user.user.username + " a quitté le serveur")
-});
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + 'kick') {
-       if (!message.member.hasPermission('KICK_MEMBERS')) return message.channel.send("Vous n'avez pas la permission d'utiliser cette commande ;(")
-       let member = message.mentions.members.first()
-       if (!member) return message.channel.send("Veuillez mentionner un utilisateur :x:")
-       if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send("Vous ne pouvez pas kick cet utilisateur :x:")
-       if (!member.kickable) return message.channel.send("Je ne peux pas exclure cet utilisateur :sunglass:")
-       member.kick()
-       message.channel.send('**' + member.user.username + '** a été exclu :white_check_mark:')
-    }
-});
- 
-/*Ban*/
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLocaleLowerCase() === prefix + 'ban') {
-       if (!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send("Vous n'avez pas la permission d'utiliser cette commande ;(")
-       let member = message.mentions.members.first()
-       if (!member) return message.channel.send("Veuillez mentionner un utilisateur :x:")
-       if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send("Vous ne pouvez pas bannir cet utilisateur :x:")
-       if (!member.bannable) return message.channel.send("Je ne peux pas bannir cet utilisateur :sunglass:")
-       message.guild.ban(member, {days: 7})
-       message.channel.send('**' + member.user.username + '** a été banni :white_check_mark:')
-    }
-});
 
 client.on('guildMemberAdd', function (member) {
     let embed = new Discord.RichEmbed()
